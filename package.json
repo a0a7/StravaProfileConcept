@@ -40,6 +40,8 @@
 	"dependencies": {
 		"bits-ui": "^0.22.0",
 		"lucide-svelte": "^0.474.0",
-		"pnpm": "^9.15.4"
+		"pnpm": "^9.15.4",
+		"svelte-device-info": "^1.0.6",
+		"vanilla-tilt-svelte": "^1.0.4"
 	}
 }
