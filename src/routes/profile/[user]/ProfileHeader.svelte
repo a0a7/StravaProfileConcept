@@ -20,19 +20,34 @@
 
     // Sample mosaic images
     const mosaicImages = [
-        { id: 1, src: "https://svelte0.dev/images/ui-placeholder.png", alt: "Mosaic 1" },
-        { id: 2, src: "https://svelte0.dev/images/ui-placeholder.png", alt: "Mosaic 2" },
-        { id: 3, src: "https://svelte0.dev/images/ui-placeholder.png", alt: "Mosaic 3" },
+        { id: 1, src: "https://picsum.photos/200/300", alt: "Mosaic 1" },
+        { id: 2, src: "https://picsum.photos/200/301", alt: "Mosaic 2" },
+        { id: 3, src: "https://picsum.photos/500/400", alt: "Mosaic 3" },
+        { id: 4, src: "https://picsum.photos/600/1200", alt: "Mosaic 4" },
+        { id: 5, src: "https://picsum.photos/500/300", alt: "Mosaic 5" },
+        { id: 6, src: "https://picsum.photos/200/600", alt: "Mosaic 6" },
     ];
 </script>
 
 <!-- Mosaic Images -->
-<div class="grid grid-cols-3 gap-0.5">
-    {#each mosaicImages as image}
-        <div class="aspect-[3/1]">
+<div class="grid grid-cols-4 grid-rows-1 gap-0.5">
+    {#each mosaicImages.slice(0, 3) as image}
+        <div class="aspect-square">
             <img src={image.src} alt={image.alt} class="h-full w-full object-cover" />
         </div>
     {/each}
+    <div class="grid grid-cols-2 grid-rows-2 gap-0.5">
+		{#each mosaicImages.slice(3, 4) as image}
+		<div class="col-span-2 aspect-[2/1]">
+			<img src={image.src} alt={image.alt} class="h-full w-full object-cover" />
+		</div>
+		{/each}
+        {#each mosaicImages.slice(4, 6) as image}
+            <div class="aspect-square">
+                <img src={image.src} alt={image.alt} class="h-full w-full object-cover" />
+            </div>
+        {/each}
+    </div>
 </div>
 
 <!-- Profile Section -->
