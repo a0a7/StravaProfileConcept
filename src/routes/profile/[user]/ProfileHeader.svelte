@@ -2,6 +2,8 @@
     import { LinkIcon } from "lucide-svelte";
     import { Button } from "$lib/components/ui/button";
     import { Tooltip, TooltipContent, TooltipTrigger } from "$lib/components/ui/tooltip";
+	import svelteTilt from 'vanilla-tilt-svelte';
+	import Device from 'svelte-device-info'
 
     let {
         profile,
@@ -29,36 +31,53 @@
     ];
 </script>
 
-<!-- Mosaic Images -->
-<div class="grid grid-cols-4 grid-rows-1 gap-0.5">
-    {#each mosaicImages.slice(0, 3) as image}
-        <div class="aspect-square">
-            <img src={image.src} alt={image.alt} class="h-full w-full object-cover" />
+<div class=	"mt-2">
+	<div class="grid grid-cols-3 md:grid-cols-4 grid-rows-1 gap-2">
+		{#if Device.isPhone}
+			{#each mosaicImages.slice(0, 2) as image}
+				<div class="aspect-square rounded-xl">
+				<img src={image.src} alt={image.alt} class="h-full w-full object-cover rounded-xl" />
+			</div>
+			{/each}
+			<div class="grid grid-cols-2 grid-rows-2 gap-2">
+				{#each mosaicImages.slice(2, 3) as image}
+					<div class="col-span-2 aspect-[2/1] rounded-xl">
+						<img src={image.src} alt={image.alt} class="h-full w-full object-cover rounded-xl" />
+					</div>
+				{/each}
+				{#each mosaicImages.slice(3, 5) as image}
+					<div class="aspect-square rounded-xl">
+						<img src={image.src} alt={image.alt} class="h-full w-full object-cover rounded-xl" />
+					</div>
+				{/each}
+			</div>
+	{:else}
+		{#each mosaicImages.slice(0, 3) as image}
+			<div class="aspect-square rounded-xl">
+            <img src={image.src} alt={image.alt} class="h-full w-full object-cover rounded-xl" />
         </div>
-    {/each}
-    <div class="grid grid-cols-2 grid-rows-2 gap-0.5">
-		{#each mosaicImages.slice(3, 4) as image}
-		<div class="col-span-2 aspect-[2/1]">
-			<img src={image.src} alt={image.alt} class="h-full w-full object-cover" />
+    	{/each}
+		<div class="grid grid-cols-2 grid-rows-2 gap-2">
+			{#each mosaicImages.slice(3, 4) as image}
+				<div class="col-span-2 aspect-[2/1] rounded-xl">
+					<img src={image.src} alt={image.alt} class="h-full w-full object-cover rounded-xl" />
+            	</div>
+			{/each}
+			{#each mosaicImages.slice(4, 6) as image}
+				<div class="aspect-square rounded-xl">
+					<img src={image.src} alt={image.alt} class="h-full w-full object-cover rounded-xl" />
+				</div>
+			{/each}
 		</div>
-		{/each}
-        {#each mosaicImages.slice(4, 6) as image}
-            <div class="aspect-square">
-                <img src={image.src} alt={image.alt} class="h-full w-full object-cover" />
-            </div>
-        {/each}
-    </div>
+	{/if}
 </div>
-
-<!-- Profile Section -->
-<div class="flex gap-8 p-8">
     <!-- Profile Picture -->
-    <div class="shrink-0">
-        <div class="size-36 rounded-full bg-purple-500"></div>
+    <div class="shrink-0 absolute top-[22vw] md:top-56 ml-6 md:ml-10">
+        <div class="size-[25vw] md:size-56 rounded-full bg-purple-500"></div>
     </div>
 
     <!-- Profile Info -->
-    <div class="flex flex-1 flex-col gap-6">
+    <div class="flex flex-1 flex-col gap-6 mt-24 md:mt-32">
         <div class="flex flex-col gap-4 sm:flex-row sm:items-center">
             <!-- Username and Link -->
             <div class="flex items-center gap-2">
